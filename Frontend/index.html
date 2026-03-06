@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrostBite — Premium Ice Cream</title>
+
+    <!-- Google Fonts: Syne (display) + Plus Jakarta Sans (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- ══════════════════════════════════════
+       CART OVERLAY (click-outside close)
+  ══════════════════════════════════════ -->
+    <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
+
+    <!-- ══════════════════════════════════════
+       CART DRAWER (right side-panel)
+  ══════════════════════════════════════ -->
+    <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart" role="dialog" aria-modal="true">
+
+        <div class="cd-header">
+            <div class="cd-title">
+                <span class="cd-icon">🛒</span>
+                <span>Your Cart</span>
+                <span class="cd-count" id="cdCount">0 items</span>
+            </div>
+            <button class="cd-close" id="cdClose" aria-label="Close cart">✕</button>
+        </div>
+
+        <!-- Cart items list -->
+        <div class="cd-body" id="cdBody">
+            <!-- Populated by JS -->
+            <div class="cd-empty" id="cdEmpty">
+                <div class="cde-icon">🍦</div>
+                <p>Your cart is empty</p>
+                <span>Add some scoops to get started!</span>
+            </div>
+        </div>
+
+        <!-- Footer: total + checkout -->
+        <div class="cd-footer" id="cdFooter">
+            <div class="cd-subtotals">
+                <div class="cd-row">
+                    <span>Subtotal</span>
+                    <span id="cdSubtotal">$0.00</span>
+                </div>
+                <div class="cd-row">
+                    <span>Delivery fee</span>
+                    <span class="cd-green" id="cdDelivery">FREE</span>
+                </div>
+                <div class="cd-divider"></div>
+                <div class="cd-row cd-total-row">
+                    <span>Total</span>
+                    <span id="cdTotal">$0.00</span>
+                </div>
+            </div>
+            <button class="btn btn-checkout" id="btnCheckout">
+                Place Order · <span id="checkoutTotal">$0.00</span>
+            </button>
+        </div>
+
+    </aside>
+
+    <!-- ══════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+
+            <!-- Logo -->
+            <a href="#" class="nav-logo">
+                <span class="logo-mark">🍧</span>
+                <span class="logo-name">Frost<em>Bite</em></span>
+            </a>
+
+            <!-- Search bar (desktop) -->
+            <div class="nav-search" id="navSearch">
+                <span class="search-icon">🔍</span>
+                <input type="search" class="search-input" id="searchInput" placeholder="Search flavours…"
+                    aria-label="Search ice cream flavours" autocomplete="off" />
+                <button class="search-clear" id="searchClear" aria-label="Clear search" style="display:none">✕</button>
+            </div>
+
+            <!-- Right actions -->
+            <div class="nav-actions">
+                <!-- Mobile search toggle -->
+                <button class="icon-btn" id="mobileSearchToggle" aria-label="Search">🔍</button>
+
+                <!-- Cart button -->
+                <button class="cart-trigger" id="cartTrigger" aria-label="Open cart">
+                    <span class="ct-icon">🛒</span>
+                    <span class="ct-label">Cart</span>
+                    <span class="ct-badge" id="ctBadge" data-count="0">0</span>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Mobile search bar (toggled) -->
+        <div class="mobile-search-bar" id="mobileSearchBar">
+            <span class="search-icon">🔍</span>
+            <input type="search" class="search-input" id="mobileSearchInput" placeholder="Search flavours…"
+                aria-label="Search ice cream flavours" autocomplete="off" />
+            <button class="search-clear" id="mobileSearchClear" aria-label="Clear" style="display:none">✕</button>
+        </div>
+    </nav>
+
+    <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-pattern" aria-hidden="true"></div>
+
+        <div class="hero-inner">
+            <div class="hero-text">
+                <div class="hero-pill">
+                    <span class="pill-dot"></span>
+                    Open Now · Delivering in 20–30 min
+                </div>
+                <h1 class="hero-h1">
+                    Premium<br>
+                    <em>Ice Cream</em><br>
+                    Delivered 🍦
+                </h1>
+                <p class="hero-p">
+                    Hand-crafted artisan scoops made fresh daily.
+                    Choose from 12+ flavours and get it delivered to your door.
+                </p>
+                <div class="hero-stats">
+                    <div class="hstat"><strong>4.9★</strong><span>Rating</span></div>
+                    <div class="hstat-sep"></div>
+                    <div class="hstat"><strong>12+</strong><span>Flavours</span></div>
+                    <div class="hstat-sep"></div>
+                    <div class="hstat"><strong>20 min</strong><span>Delivery</span></div>
+                </div>
+                <a href="#menu" class="btn btn-hero">Browse Menu →</a>
+            </div>
+
+            <div class="hero-visual" aria-hidden="true">
+                <div class="hv-ring"></div>
+                <div class="hv-scoops">
+                    <span class="hv-s s1">🍦</span>
+                    <span class="hv-s s2">🍧</span>
+                    <span class="hv-s s3">🍡</span>
+                    <span class="hv-s s4">🍫</span>
+                    <span class="hv-s s5">🍓</span>
+                    <span class="hv-s s6">🥭</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wavy bottom -->
+        <div class="hero-wave" aria-hidden="true">
+            <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+                <path d="M0,45 C200,90 400,0 720,45 C1040,90 1240,0 1440,45 L1440,90 L0,90 Z" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+       MENU SECTION
+  ══════════════════════════════════════ -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+
+            <!-- Section header + category pills -->
+            <div class="menu-header">
+                <div>
+                    <h2 class="menu-title">Our Menu</h2>
+                    <p class="menu-sub" id="menuSub">Showing all 12 flavours</p>
+                </div>
+
+                <div class="category-pills" id="categoryPills" role="tablist" aria-label="Filter by category">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Search (below header on mobile) -->
+            <div class="inline-search" id="inlineSearch">
+                <span>🔍</span>
+                <input type="search" id="inlineSearchInput" placeholder="Search flavours…" aria-label="Search"
+                    autocomplete="off" />
+                <button id="inlineSearchClear" style="display:none" aria-label="Clear">✕</button>
+            </div>
+
+            <!-- No-results message -->
+            <div class="no-results" id="noResults" style="display:none">
+                <p>🔍 No flavours found for "<span id="noResultsTerm"></span>"</p>
+                <button class="btn btn-sm" id="clearSearchBtn">Clear Search</button>
+            </div>
+
+            <!-- Cards grid — populated by JS -->
+            <div class="menu-grid" id="menuGrid" role="list"></div>
+
+        </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════
+       ORDER SUCCESS TOAST
+  ══════════════════════════════════════ -->
+    <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
