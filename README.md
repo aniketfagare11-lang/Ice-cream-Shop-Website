@@ -59,17 +59,5 @@ cd Ice-cream-Shop-Website
 3. Run the project
 
 Open **index.html** in your browser.
----
 
-## 👨‍💻 Author
-
-**Aniket Fagare**
-
-GitHub: https://github.com/aniketfagare11-lang
-
----
-
-## ⭐ Support
-
-If you like this project, give it a ⭐ on GitHub.
 
